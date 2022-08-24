@@ -1,0 +1,12 @@
+
+{% load crispy_forms_tags %}
+<form method="POST" action="{{form_action}}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for visivel in form.visible_fields %}
+            {{visivel | as_crispy_field}}
+    {% endfor %}
+
+            <input type="submit" class="btn btn-primary"
+                    value="Enviar">
+</form>

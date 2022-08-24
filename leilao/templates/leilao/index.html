@@ -1,0 +1,54 @@
+{% extends 'partials/_base.html' %}
+{% block titulo %}Adventure Motors Leilao{% endblock titulo %}
+{% block conteudo %}
+
+<div class="container">
+
+
+    <div class="card-columns mt-4">
+  
+        {% for veiculo in veiculos %}
+    <div class="card">
+        {% if veiculo.imagem %}
+        <a href="{% url 'detalhe' veiculo.id %}">
+            <img class="card-img-top"
+                 src="{{veiculo.imagem.url}}"
+                 alt="{{veiculo.nome_veiculo}}">
+        </a>
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="{% url 'detalhe' veiculo.id %}">
+                    {{veiculo.nome_veiculo}}
+                </a>
+            </h5>
+            <p class="card-text"> {{veiculo.descricao_curta_veiculo}} </p>
+            <p class="card-text">
+                <small class="text">
+                    {{veiculo.marca_veiculo}}
+                    | 
+                   Ano: {{veiculo.ano_veiculo|date:"Y"}}
+                    | 
+                    R$ {{veiculo.preco_veiculo}}
+                    |
+                    R$ {{veiculo.preco_tabela}}
+                </small>
+            </p>
+
+            <div class="text-right">
+                <a href="{% url 'detalhe' veiculo.id %}" class="btn btn-outline-secondary">Ver mais...</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+</div>
+
+{% include 'partials/_paginacao.html' %}
+{% endblock conteudo %}

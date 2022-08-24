@@ -1,0 +1,47 @@
+
+<!--_nav.html-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary static-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Adventure Motors Leilão</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                </li>
+                {% endif %}
+                {% if request.user.is_authenticated %} 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'perfil_update' user.perfil.pk %}">Perfil</a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categoria' 'Moto' %}">Motos</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categoria' 'Carro' %}">Carros</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'atendimento' %}">Atendimento</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sobre_nos'  %}">Sobre nos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--/_nav.html-->

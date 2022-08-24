@@ -1,0 +1,70 @@
+{% extends 'partials/_base.html' %}
+
+{% block titulo %}{{veiculo.nome_veiculo}}{% endblock titulo %}
+{% block conteudo %}    
+<!-- POST -->
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8 text-center">
+            <h2>{{veiculo.nome_veiculo}}</h2>
+            <h5>{{veiculo.descricao_curta_veiculo}}</h5>
+            <p class="text mt-4">
+                <small>
+                    {{veiculo.marca_veiculo}} |
+                    Ano: {{veiculo.ano_veiculo|date:"Y"}} | 
+                    R${{veiculo.preco_veiculo}} |
+                    R${{veiculo.preco_tabela}}
+                </small>
+            </p>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8 ">
+            {% if veiculo.imagem %}
+            <img class="img-fluid pb-5 mx-auto d-block" src="{{veiculo.imagem.url}}" alt="{{veiculo.nome_veiculo}}">
+            {% endif %}
+            <div class="container-sm">
+            {{veiculo.descricao_veiculo}}
+            </div>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+    
+
+    {% if lances %}
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+            <div class="col-xl-8">
+                <h2 class="my-3">Lances realizados</h2>
+            {% for lance in lances %}
+            
+            <h5 class="mb-2 mt-5">Usuario: {{lance.usuario_lance}}</h5>
+            <p class="mb-1">Valor do lance: R$: {{lance.seu_lance}}</p>
+
+            {% endfor %}
+                </div>
+            <div class="col-xl"></div>
+        </div>
+    {% endif %}
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8">
+
+            <h2 class="my-3">Deixe um Lance</h2>
+        lances iniciados no dia: {{veiculo.inicio_lance}} --
+            data final para lances: {{veiculo.final_lance}}
+            {% include 'partials/_formulario.html' %}
+
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+
+<!-- POST -->
+
+{% endblock conteudo %}
